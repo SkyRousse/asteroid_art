@@ -7,12 +7,15 @@ $(document).ready(function() {
   var newDraw = new Draw();
   newDraw.createEarth();
   $('#asteroid').click(function() {
-    currentasteroidObject.getAsteroid();
+    var year = parseInt($("#year").val());
+    var month = parseInt($("#month").val());
+    var day = parseInt($("#day").val());
+    currentasteroidObject.getAsteroid(year,month,day);
   });
   $('#drawAsteroids').click(function() {
     currentasteroidObject.asteroidsInstances.forEach(function(simpleAsteroid) {
       console.log(simpleAsteroid.miss_distance);
-      newDraw.createAsteroid(simpleAsteroid.miss_distance);
+      newDraw.createAsteroid(simpleAsteroid.miss_distance, simpleAsteroid.estimated_diameter_meters_max);
     });
 
   });
