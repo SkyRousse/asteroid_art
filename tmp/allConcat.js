@@ -1,13 +1,20 @@
-var asteroid = require('./../js/asteroid.js').asteroidModule;
-// var draw = require('./../js/draw.js').drawModule;
-var currentasteroidObject = new asteroid();
-// var newDraw = new Draw();
+var Asteroid = require('./../js/asteroid.js').asteroidModule;
+var Draw = require('./../js/draw.js').drawModule;
+
 
 $(document).ready(function() {
-
+  var currentasteroidObject = new Asteroid();
+  var newDraw = new Draw();
+  newDraw.createEarth();
   $('#asteroid').click(function() {
     currentasteroidObject.getAsteroid();
-    // newDraw.createEarth();
+  });
+  $('#drawAsteroids').click(function() {
+    currentasteroidObject.asteroidsInstances.forEach(function(simpleAsteroid) {
+      console.log(simpleAsteroid.miss_distance);
+      newDraw.createAsteroid(simpleAsteroid.miss_distance);
+    });
+
   });
 });
 
