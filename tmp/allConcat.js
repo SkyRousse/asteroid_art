@@ -1,3 +1,13 @@
+var asteroid = require('./../js/asteroid.js').asteroidModule;
+
+
+$(document).ready(function() {
+  var currentasteroidObject = new asteroid();
+  $('#asteroid').click(function() {
+    currentasteroidObject.getAsteroid();
+  });
+});
+
 var Constructor = require('./../js/other-template.js').constructorModule;
 
 
@@ -35,18 +45,3 @@ $(document).ready(function(){
 });
 
 exports.clockModule = Clock;
-
-var Weather = require('./../js/weather.js').weatherModule;
-
-var displayHumidity = function(city, humidityData) {
-  $('.showWeather').text("The humidity in " + city + " is " + humidityData + "%");
-}
-
-$(document).ready(function() {
-  var currentWeatherObject = new Weather();
-  $('#weatherLocation').click(function() {
-    var city = $('#location').val();
-    $('#location').val("");
-    currentWeatherObject.getWeather(city, displayHumidity);
-  });
-});
