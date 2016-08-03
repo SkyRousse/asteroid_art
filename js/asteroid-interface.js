@@ -1,8 +1,8 @@
 var asteroid = require('./../js/asteroid.js').asteroidModule;
-
+var currentasteroidObject = new asteroid();
 
 $(document).ready(function() {
-  var currentasteroidObject = new asteroid();
+
   $('#asteroid').click(function() {
     currentasteroidObject.getAsteroid();
   });
