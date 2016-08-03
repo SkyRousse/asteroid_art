@@ -12,7 +12,7 @@ Asteroid.prototype.getAsteroid = function() {
     var dates = Object.keys(response.near_earth_objects);
     dates.forEach(function(dayWithAsteroids) {
       response.near_earth_objects[dayWithAsteroids].forEach(function(asteroid) {
-        var miss_distance = asteroid.close_approach_data[0].miss_distance.miles;
+        var miss_distance = asteroid.close_approach_data[0].miss_distance.kilometers;
         var relative_velocity = asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour;
         var absolute_magnitude_h = asteroid.absolute_magnitude_h;
         var estimated_diameter_meters_min = asteroid.estimated_diameter.meters.estimated_diameter_min;
@@ -49,5 +49,9 @@ Asteroid.prototype.addSimpleAsteroid = function(distance, velocity, magnitude, m
 Asteroid.prototype.quackTestLog = function() {
   console.log("QUACK");
 };
+
+
+
+
 
 exports.asteroidModule = Asteroid;
