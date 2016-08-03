@@ -2,26 +2,48 @@ var apiKey = require('./../.env').apiKey;
 
 
 function Asteroid(){
-  this.asteroidsFromRequest = {};
+  this.asteroidsInstances = [];
 }
 
 Asteroid.prototype.getAsteroid = function() {
+  var asteroidObjectContext = this;
   $.get('https://api.nasa.gov/neo/rest/v1/feed?start_date=2045-09-07&end_date=2045-09-14&api_key=' + apiKey).then(function(response) {
     // console.log(response);
-    var miss_distance = response.near_earth_objects["2045-09-07"][0].close_approach_data[0].miss_distance.miles;
-    var relative_velocity = response.near_earth_objects["2045-09-07"][0].close_approach_data[0].relative_velocity.kilometers_per_hour;
-    var absolute_magnitude_h = response.near_earth_objects["2045-09-07"][0].absolute_magnitude_h;
-    var estimated_diameter_meters_min = response.near_earth_objects["2045-09-07"][0].estimated_diameter.meters.estimated_diameter_min;
-    var estimated_diameter_meters_max = response.near_earth_objects["2045-09-07"][0].estimated_diameter.meters.estimated_diameter_max;
-    console.log(miss_distance + " is the miss distance");
-    console.log(relative_velocity + " is the relative velocity");
-    console.log(absolute_magnitude_h + " is the absolute magnitude (h)");
-    console.log(estimated_diameter_meters_min + " is the estimated diameter min in meters");
-    console.log(estimated_diameter_meters_max + " is the estimated diameter max in meters");
-
+    var asteroidsInDay = response.near_earth_objects["2045-09-07"];
+    asteroidsInDay.forEach(function(asteroid) {;
+      var miss_distance = asteroid.close_approach_data[0].miss_distance.miles;
+      var relative_velocity = asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour;
+      var absolute_magnitude_h = asteroid.absolute_magnitude_h;
+      var estimated_diameter_meters_min = asteroid.estimated_diameter.meters.estimated_diameter_min;
+      var estimated_diameter_meters_max = asteroid.estimated_diameter.meters.estimated_diameter_max;
+      console.log(miss_distance + " is the miss distance");
+      console.log(relative_velocity + " is the relative velocity");
+      console.log(absolute_magnitude_h + " is the absolute magnitude (h)");
+      console.log(estimated_diameter_meters_min + " is the estimated diameter min in meters");
+      console.log(estimated_diameter_meters_max + " is the estimated diameter max in meters");
+      asteroidObjectContext.addSimpleAsteroid(miss_distance, relative_velocity, absolute_magnitude_h, estimated_diameter_meters_min, estimated_diameter_meters_max);
+    });
   }).fail(function(error) {
+    console.log("FAILING?!???");
     $('.showAsteroid').text(error.responseJSON.message);
   });
 }
 
+function SimpleAsteroid(distance, velocity, magnitude, minDiameter, maxDiameter, id) {
+  this.miss_distance = distance;
+  this.relative_velocity = velocity;
+  this.absolute_magnitude_h = magnitude;
+  this.estimated_diameter_meters_min = minDiameter;
+  this.estimated_diameter_meters_max = maxDiameter;
+  this.idCode = id || 0;
+}
+
+Asteroid.prototype.addSimpleAsteroid = function(distance, velocity, magnitude, minDiameter, maxDiameter) {
+  var newSimpleAsteroid = new SimpleAsteroid(distance, velocity, magnitude, minDiameter, maxDiameter, this.asteroidsInstances.length);
+  this.asteroidsInstances.push(newSimpleAsteroid);
+}
+
+Asteroid.prototype.quackTestLog = function() {
+  console.log("QUACK");
+}
 exports.asteroidModule = Asteroid;
