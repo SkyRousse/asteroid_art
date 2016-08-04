@@ -2,6 +2,12 @@ function Draw() {
   console.log("Draw.");
   this.clickedXPos;
   this.clickedYPos;
+  var c = document.getElementById("cosmos");
+  var ctx = c.getContext("2d");
+  ctx.beginPath();
+  ctx.rect(0, 0, $('#cosmos').attr('width'), $('#cosmos').attr('height'));
+  ctx.fillStyle = "rgb(5,5,5)";
+  ctx.fill();
 }
 
 Draw.prototype.createEarth = function() {
@@ -32,9 +38,9 @@ Draw.prototype.createAsteroid = function(distance, diameterMeters) {
   var ctx = c.getContext("2d");
   ctx.beginPath();
   ctx.arc(x,y,diameter,0,2*Math.PI);
-  // ctx.fillStyle = "rgb(60,70,0)";
-  // ctx.fill();
-  ctx.strokeStyle = "rgb(60,70,0)";
+  ctx.fillStyle = "rgb(70,40,10)";
+  ctx.fill();
+  ctx.strokeStyle = "rgb(70,40,10)";
   ctx.stroke();
   ctx.closePath();
   var arrayDiameterXY = [diameter, x, y];

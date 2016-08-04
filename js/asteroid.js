@@ -11,7 +11,9 @@ Asteroid.prototype.getAsteroid = function(year, month, day) {
     // console.log(response);
     var dates = Object.keys(response.near_earth_objects);
     dates.forEach(function(dayWithAsteroids) {
+      console.log(response);
       response.near_earth_objects[dayWithAsteroids].forEach(function(asteroid) {
+        var roidName = asteroid["name"];
         var miss_distance = asteroid.close_approach_data[0].miss_distance.kilometers;
         var relative_velocity = asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour;
         var absolute_magnitude_h = asteroid.absolute_magnitude_h;
@@ -22,7 +24,7 @@ Asteroid.prototype.getAsteroid = function(year, month, day) {
         console.log(absolute_magnitude_h + " is the absolute magnitude (h)");
         console.log(estimated_diameter_meters_min + " is the estimated diameter min in meters");
         console.log(estimated_diameter_meters_max + " is the estimated diameter max in meters");
-        self.addSimpleAsteroid(miss_distance, relative_velocity, absolute_magnitude_h, estimated_diameter_meters_min, estimated_diameter_meters_max);
+        self.addSimpleAsteroid(roidName, miss_distance, relative_velocity, absolute_magnitude_h, estimated_diameter_meters_min, estimated_diameter_meters_max);
       });
     });
     console.log(self.asteroidsInstances);
@@ -32,7 +34,8 @@ Asteroid.prototype.getAsteroid = function(year, month, day) {
   });
 };
 
-function SimpleAsteroid(distance, velocity, magnitude, minDiameter, maxDiameter, id) {
+function SimpleAsteroid(name, distance, velocity, magnitude, minDiameter, maxDiameter, id) {
+  this.roidName = name;
   this.miss_distance = distance;
   this.relative_velocity = velocity;
   this.absolute_magnitude_h = magnitude;
@@ -44,8 +47,8 @@ function SimpleAsteroid(distance, velocity, magnitude, minDiameter, maxDiameter,
   this.canvasDiameter;
 }
 
-Asteroid.prototype.addSimpleAsteroid = function(distance, velocity, magnitude, minDiameter, maxDiameter) {
-  var newSimpleAsteroid = new SimpleAsteroid(distance, velocity, magnitude, minDiameter, maxDiameter, this.asteroidsInstances.length);
+Asteroid.prototype.addSimpleAsteroid = function(name, distance, velocity, magnitude, minDiameter, maxDiameter) {
+  var newSimpleAsteroid = new SimpleAsteroid(name, distance, velocity, magnitude, minDiameter, maxDiameter, this.asteroidsInstances.length);
   this.asteroidsInstances.push(newSimpleAsteroid);
 };
 

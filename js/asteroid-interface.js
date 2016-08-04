@@ -30,7 +30,13 @@ $(document).ready(function() {
     currentasteroidObject.asteroidsInstances.forEach(function(simpleAsteroid) {
       if (newDraw.checkIfClickIsWithinAsteroid(currentX, currentY, simpleAsteroid.xPos, simpleAsteroid.yPos, simpleAsteroid.canvasDiameter*2)) {
         htmlOutput = "<ul>";
-        htmlOutput = "<li>Miss distance: " + simpleAsteroid.miss_distance + "km</li>";
+        htmlOutput += "<li>Name: " + simpleAsteroid.roidName + "</li>";
+        htmlOutput += "<li>Miss distance: " + simpleAsteroid.miss_distance + "km</li>";
+        htmlOutput += "<li>Relative velocity to Earth: " + simpleAsteroid.relative_velocity + "kph</li>";
+        htmlOutput += "<li>Estimated max diameter: " + simpleAsteroid.estimated_diameter_meters_max + " meters</li>";
+        htmlOutput += "<li>Estimated min diamter: " + simpleAsteroid.estimated_diameter_meters_min + " meters</li>";
+        htmlOutput += "<li>Abosulute magnitude (brightness): " + simpleAsteroid.absolute_magnitude_h + "</li>";
+        htmlOutput += "</ul>";
         $('#asteroidDisplay').html(htmlOutput);
         hitFlag = true;
       }
