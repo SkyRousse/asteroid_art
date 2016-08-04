@@ -46,4 +46,17 @@ $(document).ready(function() {
     });
   });
 
+  $('#clearAsteroids').click(function() {
+    var c = document.getElementById("cosmos");
+    var ctx = c.getContext("2d");
+    ctx.beginPath();
+    ctx.rect(0, 0, $('#cosmos').attr('width'), $('#cosmos').attr('height'));
+    ctx.fillStyle = "rgb(5,5,5)";
+    ctx.fill();
+    newDraw.createEarth();
+    currentasteroidObject.asteroidsInstances = [];
+    $('#asteroidDisplay').html("");
+    $('input').val("");
+  });
+
 });
