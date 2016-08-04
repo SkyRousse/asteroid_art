@@ -18,9 +18,14 @@ Draw.prototype.createEarth = function() {
 };
 
 Draw.prototype.createAsteroid = function(distance, diameterMeters) {
-  var y = distance/(100000000/500);
-  var x = $('#cosmos').attr('width')/2;
+  var radius = distance/(100000000/500);
+  var centerX = $('#cosmos').attr('width')/2;
+  var centerY = $('#cosmos').attr('height')/2;
   var diameter = diameterMeters/200;
+  var angle = Math.random() * (360 - 0) + 0;
+  var x = centerX + (radius * Math.cos(angle/180*Math.PI));
+  var y = centerY + (radius * Math.sin(angle/180*Math.PI));
+  console.log(y + " , " + x);
   var c = document.getElementById("cosmos");
   var ctx = c.getContext("2d");
   ctx.beginPath();
