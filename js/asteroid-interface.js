@@ -26,6 +26,9 @@ $(document).ready(function() {
     var currentX = $('#cosmos').attr('data-clicked-x-pos');
     var currentY = $('#cosmos').attr('data-clicked-y-pos');
     newDraw.checkIfClickIsWithinEarth(currentX, currentY);
+    currentasteroidObject.asteroidsInstances.forEach(function(simpleAsteroid) {
+      newDraw.checkIfClickIsWithinAsteroid(currentX, currentY, simpleAsteroid.xPos, simpleAsteroid.yPos, simpleAsteroid.canvasDiameter*2);
+    });
   });
 
 });

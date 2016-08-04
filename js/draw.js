@@ -70,13 +70,11 @@ Draw.prototype.getCursorPosition = function(event) {
   $('#cosmos').attr("data-clicked-y-pos", y);
 }
 
-// Draw.prototype.checkIfClickIsWithinAsteroid = function(clickX,clickY, asteroidX, asteroidY, asteroidDiameter) {
-//   if ( Math.pow((clickX - asteroidX), 2) + Math.pow((clickY - asteroidY), 2) < Math.pow((asteroidDiameter/2), 2) ) {
-//     console.log("CLICK WITHIN ASTEROID BOUNDARY");
-//   } else {
-//     console.log("not within boundary or something went wrong");
-//   }
-// }
+Draw.prototype.checkIfClickIsWithinAsteroid = function(clickX,clickY, asteroidX, asteroidY, asteroidDiameter) {
+  if ( Math.pow((clickX - asteroidX), 2) + Math.pow((clickY - asteroidY), 2) < Math.pow((asteroidDiameter/2), 2) ) {
+    console.log("CLICK WITHIN ASTEROID BOUNDARY");
+  }
+}
 
 Draw.prototype.checkIfClickIsWithinEarth = function(clickX,clickY) {
   if ( Math.pow((clickX - $('#cosmos').attr('width')/2), 2) + Math.pow((clickY - $('#cosmos').attr('height')/2), 2) < Math.pow(($('#cosmos').attr('height')/100), 2) ) {
