@@ -25,9 +25,18 @@ $(document).ready(function() {
   $('#cosmos').click(function() {
     var currentX = $('#cosmos').attr('data-clicked-x-pos');
     var currentY = $('#cosmos').attr('data-clicked-y-pos');
+    var hitFlag = false;
     newDraw.checkIfClickIsWithinEarth(currentX, currentY);
     currentasteroidObject.asteroidsInstances.forEach(function(simpleAsteroid) {
-      newDraw.checkIfClickIsWithinAsteroid(currentX, currentY, simpleAsteroid.xPos, simpleAsteroid.yPos, simpleAsteroid.canvasDiameter*2);
+      if (newDraw.checkIfClickIsWithinAsteroid(currentX, currentY, simpleAsteroid.xPos, simpleAsteroid.yPos, simpleAsteroid.canvasDiameter*2)) {
+        htmlOutput = "<ul>";
+        htmlOutput = "<li>Miss distance: " + simpleAsteroid.miss_distance + "km</li>";
+        $('#asteroidDisplay').html(htmlOutput);
+        hitFlag = true;
+      }
+      if (!hitFlag) {
+        $('#asteroidDisplay').html("<p>UR not clicking an asteroid :(</p>");
+      }
     });
   });
 

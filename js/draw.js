@@ -73,6 +73,7 @@ Draw.prototype.getCursorPosition = function(event) {
 Draw.prototype.checkIfClickIsWithinAsteroid = function(clickX,clickY, asteroidX, asteroidY, asteroidDiameter) {
   if ( Math.pow((clickX - asteroidX), 2) + Math.pow((clickY - asteroidY), 2) < Math.pow((asteroidDiameter/2), 2) ) {
     console.log("CLICK WITHIN ASTEROID BOUNDARY");
+    return true;
   }
 }
 
