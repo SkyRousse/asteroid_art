@@ -17,6 +17,6 @@ $(document).ready(function() {
       console.log(simpleAsteroid.miss_distance);
       newDraw.createAsteroid(simpleAsteroid.miss_distance, simpleAsteroid.estimated_diameter_meters_max);
     });
-
   });
+  newDraw.cursorInit();
 });
