@@ -12,3 +12,23 @@ $green : #75B975;
     color: white;
   }
 }
+
+body {
+  background-color: #ccc;
+}
+
+#asteroidDisplay, #cosmos {
+  margin-left: 5%;
+}
+
+#asteroidDisplay {
+    position: relative;
+    top: -990px;
+    font-size: 20px;
+    color: red;
+    padding-left: 6px;
+    ul {
+      padding-left: 10px;
+      list-style: none;
+    }
+}
