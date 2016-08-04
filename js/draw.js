@@ -1,5 +1,7 @@
 function Draw() {
   console.log("Draw.");
+  this.clickedXPos;
+  this.clickedYPos;
 }
 
 Draw.prototype.createEarth = function() {
@@ -25,7 +27,7 @@ Draw.prototype.createAsteroid = function(distance, diameterMeters) {
   var degree = Math.random() * (360 - 0) + 0;
   var x = centerX + (radius * Math.cos(degree/180*Math.PI));
   var y = centerY + (radius * Math.sin(degree/180*Math.PI));
-  console.log(y + " , " + x);
+  console.log(x + " , " + y);
   var c = document.getElementById("cosmos");
   var ctx = c.getContext("2d");
   ctx.beginPath();
@@ -35,6 +37,8 @@ Draw.prototype.createAsteroid = function(distance, diameterMeters) {
   ctx.strokeStyle = "rgb(60,70,0)";
   ctx.stroke();
   ctx.closePath();
+  var arrayDiameterXY = [diameter, x, y];
+  return arrayDiameterXY;
 };
 
 
@@ -62,8 +66,31 @@ Draw.prototype.getCursorPosition = function(event) {
   x -= canvas.offsetLeft;
   y -= canvas.offsetTop;
   console.log("x: " + x + "  y: " + y);
+  console.log(this);
+  this.clickedXPos = x;
+  this.clickedYPos = y;
 }
 
+// Draw.prototype.checkIfClickIsWithinAsteroid = function(clickX,clickY, asteroidX, asteroidY, asteroidDiameter) {
+//   if ( Math.pow((clickX - asteroidX), 2) + Math.pow((clickY - asteroidY), 2) < Math.pow((asteroidDiameter/2), 2) ) {
+//     console.log("CLICK WITHIN ASTEROID BOUNDARY");
+//   } else {
+//     console.log("not within boundary or something went wrong");
+//   }
+// }
 
+Draw.prototype.checkIfClickIsWithinEarth = function(clickX,clickY) {
+  // if ( Math.pow((clickX - $('#cosmos').attr('width')/2), 2) + Math.pow((clickY - $('#cosmos').attr('height')/2), 2) < Math.pow(($('#cosmos').attr('height')/100), 2) ) {
+  //   console.log("CLICK WITHIN ASTEROID BOUNDARY");
+  // } else {
+  //   console.log("not within boundary or something went wrong");
+  // }
+  console.log(clickX + " is clicked x");
+  console.log(clickY) + " is clicked y";
+  console.log("hmm...");
+  if (clickX > 250 && clickY > 250) {
+    console.log("QUADRANT 1");
+  }
+}
 
 exports.drawModule = Draw;

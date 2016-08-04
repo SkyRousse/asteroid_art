@@ -39,6 +39,9 @@ function SimpleAsteroid(distance, velocity, magnitude, minDiameter, maxDiameter,
   this.estimated_diameter_meters_min = minDiameter;
   this.estimated_diameter_meters_max = maxDiameter;
   this.idCode = id || 0;
+  this.xPos;
+  this.yPos;
+  this.canvasDiameter;
 }
 
 Asteroid.prototype.addSimpleAsteroid = function(distance, velocity, magnitude, minDiameter, maxDiameter) {

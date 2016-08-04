@@ -14,9 +14,13 @@ $(document).ready(function() {
   });
   $('#drawAsteroids').click(function() {
     currentasteroidObject.asteroidsInstances.forEach(function(simpleAsteroid) {
-      console.log(simpleAsteroid.miss_distance);
-      newDraw.createAsteroid(simpleAsteroid.miss_distance, simpleAsteroid.estimated_diameter_meters_max);
+      var arrayDiameterXY = newDraw.createAsteroid(simpleAsteroid.miss_distance, simpleAsteroid.estimated_diameter_meters_max);
+      simpleAsteroid.canvasDiameter = arrayDiameterXY[0]
+      simpleAsteroid.xPos = arrayDiameterXY[1];
+      simpleAsteroid.yPos = arrayDiameterXY[2];
+      console.log(simpleAsteroid);
     });
   });
   newDraw.cursorInit();
+
 });
