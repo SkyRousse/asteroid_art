@@ -7,7 +7,7 @@ function Asteroid(){
 
 Asteroid.prototype.getAsteroid = function(year, month, day) {
   var self = this;
-  $.get('https://api.nasa.gov/neo/rest/v1/feed?start_date='+ year + '-' + month + '-' + day + '&end_date=' + year + '-' + month + '-' + (day+1) + '&api_key=' + apiKey).then(function(response) {
+  $.get('https://api.nasa.gov/neo/rest/v1/feed?start_date='+ year + '-' + month + '-' + day + '&end_date=' + year + '-' + month + '-' + (day+7) + '&api_key=' + apiKey).then(function(response) {
     // console.log(response);
     var dates = Object.keys(response.near_earth_objects);
     dates.forEach(function(dayWithAsteroids) {
