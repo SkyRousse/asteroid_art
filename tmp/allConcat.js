@@ -22,6 +22,11 @@ $(document).ready(function() {
     });
   });
   newDraw.cursorInit();
+  $('#cosmos').click(function() {
+    var currentX = $('#cosmos').attr('data-clicked-x-pos');
+    var currentY = $('#cosmos').attr('data-clicked-y-pos');
+    newDraw.checkIfClickIsWithinEarth(currentX, currentY);
+  });
 
 });
 

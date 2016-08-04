@@ -66,9 +66,8 @@ Draw.prototype.getCursorPosition = function(event) {
   x -= canvas.offsetLeft;
   y -= canvas.offsetTop;
   console.log("x: " + x + "  y: " + y);
-  console.log(this);
-  this.clickedXPos = x;
-  this.clickedYPos = y;
+  $('#cosmos').attr("data-clicked-x-pos", x);
+  $('#cosmos').attr("data-clicked-y-pos", y);
 }
 
 // Draw.prototype.checkIfClickIsWithinAsteroid = function(clickX,clickY, asteroidX, asteroidY, asteroidDiameter) {
@@ -80,16 +79,10 @@ Draw.prototype.getCursorPosition = function(event) {
 // }
 
 Draw.prototype.checkIfClickIsWithinEarth = function(clickX,clickY) {
-  // if ( Math.pow((clickX - $('#cosmos').attr('width')/2), 2) + Math.pow((clickY - $('#cosmos').attr('height')/2), 2) < Math.pow(($('#cosmos').attr('height')/100), 2) ) {
-  //   console.log("CLICK WITHIN ASTEROID BOUNDARY");
-  // } else {
-  //   console.log("not within boundary or something went wrong");
-  // }
-  console.log(clickX + " is clicked x");
-  console.log(clickY) + " is clicked y";
-  console.log("hmm...");
-  if (clickX > 250 && clickY > 250) {
-    console.log("QUADRANT 1");
+  if ( Math.pow((clickX - $('#cosmos').attr('width')/2), 2) + Math.pow((clickY - $('#cosmos').attr('height')/2), 2) < Math.pow(($('#cosmos').attr('height')/100), 2) ) {
+    console.log("CLICK WITHIN EARTH BOUNDARY");
+  } else {
+    console.log("not within boundary or something went wrong");
   }
 }
 
